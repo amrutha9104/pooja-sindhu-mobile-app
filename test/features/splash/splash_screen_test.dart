@@ -11,4 +11,3 @@ void main() {
     expect(find.byIcon(Icons.temple_hindu), findsOneWidget);
   });
 }
-
