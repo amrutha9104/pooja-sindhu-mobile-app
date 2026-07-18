@@ -4,4 +4,3 @@ class AppRadius {
   static const large = 16.0;
   static const xlarge = 24.0;
 }
-

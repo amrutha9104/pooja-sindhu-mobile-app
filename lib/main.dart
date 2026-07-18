@@ -1,20 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pooja_sindhu/core/router/app_router.dart';
 import 'package:pooja_sindhu/core/theme/app_colors.dart';
 import 'package:pooja_sindhu/core/theme/app_radius.dart';
 import 'package:pooja_sindhu/core/theme/app_spacing.dart';
 import 'package:pooja_sindhu/core/theme/app_typography.dart';
+import 'package:pooja_sindhu/features/auth/data/repositories/auth_repository_provider.dart';
 
 void main() {
-  runApp(const PoojaSindhuApp());
+  runApp(const ProviderScope(child: PoojaSindhuApp()));
 }
 
-class PoojaSindhuApp extends StatelessWidget {
+class PoojaSindhuApp extends ConsumerStatefulWidget {
   const PoojaSindhuApp({super.key});
 
   @override
+  ConsumerState<PoojaSindhuApp> createState() => _PoojaSindhuAppState();
+}
+
+class _PoojaSindhuAppState extends ConsumerState<PoojaSindhuApp> {
+  @override
+  void initState() {
+    super.initState();
+    Future.microtask(() {
+      ref.read(authRepositoryProvider).tryRestoreSession();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final router = ref.watch(appRouterProvider);
     return MaterialApp.router(
       title: 'Pooja Sindhu',
       debugShowCheckedModeBanner: false,
@@ -25,12 +41,11 @@ class PoojaSindhuApp extends StatelessWidget {
           primary: AppColors.primary,
           secondary: AppColors.secondary,
           surface: AppColors.surfaceLight,
-          background: AppColors.backgroundLight,
         ),
         scaffoldBackgroundColor: AppColors.backgroundLight,
         textTheme: AppTypography.textTheme,
         appBarTheme: const AppBarTheme(centerTitle: true),
-        cardTheme: CardTheme(
+        cardTheme: CardThemeData(
           color: AppColors.surfaceLight,
           margin: const EdgeInsets.all(AppSpacing.md),
           shape: RoundedRectangleBorder(
@@ -38,7 +53,7 @@ class PoojaSindhuApp extends StatelessWidget {
           ),
         ),
       ),
-      routerConfig: appRouter,
+      routerConfig: router,
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
@@ -48,4 +63,3 @@ class PoojaSindhuApp extends StatelessWidget {
     );
   }
 }
-
