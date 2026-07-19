@@ -13,5 +13,8 @@ class AppColors {
   static const warning = Color(0xFFED6C02);
   static const error = Color(0xFFC62828);
   static const info = Color(0xFF0288D1);
+  static const textSecondary = Color(0xFF6B7280);
+  static const divider = Color(0xFFE5E7EB);
+  static const onPrimary = Colors.white;
 }
 
