@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:pooja_sindhu/core/router/app_router.dart';
 import 'package:pooja_sindhu/core/theme/app_colors.dart';
@@ -7,7 +8,7 @@ import 'package:pooja_sindhu/core/theme/app_spacing.dart';
 import 'package:pooja_sindhu/core/theme/app_typography.dart';
 
 void main() {
-  runApp(const PoojaSindhuApp());
+  runApp(const ProviderScope(child: PoojaSindhuApp()));
 }
 
 class PoojaSindhuApp extends StatelessWidget {
@@ -25,12 +26,12 @@ class PoojaSindhuApp extends StatelessWidget {
           primary: AppColors.primary,
           secondary: AppColors.secondary,
           surface: AppColors.surfaceLight,
-          background: AppColors.backgroundLight,
+          surfaceContainerLowest: AppColors.backgroundLight,
         ),
         scaffoldBackgroundColor: AppColors.backgroundLight,
         textTheme: AppTypography.textTheme,
         appBarTheme: const AppBarTheme(centerTitle: true),
-        cardTheme: CardTheme(
+        cardTheme: CardThemeData(
           color: AppColors.surfaceLight,
           margin: const EdgeInsets.all(AppSpacing.md),
           shape: RoundedRectangleBorder(

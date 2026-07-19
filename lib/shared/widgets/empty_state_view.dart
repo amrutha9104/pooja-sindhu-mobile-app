@@ -1,0 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:pooja_sindhu/core/theme/app_colors.dart';
+import 'package:pooja_sindhu/core/theme/app_spacing.dart';
+import 'package:pooja_sindhu/shared/widgets/app_primary_button.dart';
+class EmptyStateView extends StatelessWidget { const EmptyStateView({super.key, required this.title, required this.message, this.ctaLabel, this.onCta, this.icon}); final String title; final String message; final String? ctaLabel; final VoidCallback? onCta; final IconData? icon; @override Widget build(BuildContext context) => Center(child: Padding(padding: const EdgeInsets.all(AppSpacing.xxl), child: Column(mainAxisSize: MainAxisSize.min, children: [Icon(icon ?? Icons.inbox_outlined, size: 64, color: AppColors.textSecondary), const SizedBox(height: AppSpacing.lg), Text(title, style: Theme.of(context).textTheme.titleLarge, textAlign: TextAlign.center), const SizedBox(height: AppSpacing.sm), Text(message, textAlign: TextAlign.center), if (ctaLabel != null && onCta != null) ...[const SizedBox(height: AppSpacing.xl), AppPrimaryButton(label: ctaLabel!, onPressed: onCta, fullWidth: false)]]))); }
