@@ -41,6 +41,7 @@ class _PoojaSindhuAppState extends ConsumerState<PoojaSindhuApp> {
           primary: AppColors.primary,
           secondary: AppColors.secondary,
           surface: AppColors.surfaceLight,
+          surfaceContainerLowest: AppColors.backgroundLight,
         ),
         scaffoldBackgroundColor: AppColors.backgroundLight,
         textTheme: AppTypography.textTheme,
