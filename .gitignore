@@ -1,0 +1,13 @@
+build/
+.dart_tool/
+*.iml
+.idea/
+local.properties
+key.properties
+.env
+coverage/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+pubspec.lock
+
